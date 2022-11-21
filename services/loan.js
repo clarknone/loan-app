@@ -1,8 +1,8 @@
 const { LoanModel } = require("../model/loan");
 
 const INTEREST_RATE = 0.08;
-const DAILY_INTEREST_RATE = 0.001;
-const PENALTY_AFTER_15_DAYS = 0.002;
+const DAILY_INTEREST_RATE = 0.01;
+const PENALTY_AFTER_15_DAYS = 0.02;
 
 exports.createLoanService = async function (data, createdDate) {
   const loan = LoanModel({ ...data });
@@ -30,7 +30,7 @@ const withPenalty = (loan) => {
   const penaltyAfter15Days = 0.02;
   loan.totalPenalty =
     loan.amount * interest * dayDifference +
-    loan.principle * (dayDifference % 15) * penaltyAfter15Days;
+    loan.principle * (dayDifference / 15) * penaltyAfter15Days;
 };
 
 exports.getLoanService = async function (filter) {
