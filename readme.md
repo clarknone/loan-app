@@ -3,10 +3,13 @@
 
 ## Formula Used
 Loan Interest = P * (r/d) * (d/365)
+
 Amount to Pay = P + LoanInterest * d
 
 Penalty Interest = Amount to Pay * pr * d
+
 Penalty Amount = AmountToPay + PenaltyInterst + (Principle * floor(d/15)* p15)
+
 
 - where:
 -   r=interest rate (0.08)
