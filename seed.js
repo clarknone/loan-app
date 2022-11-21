@@ -7,13 +7,13 @@ const updateDB = (async function () {
   const users = [
     {
       firstname: "Mercy",
-      lastname: "Fisher",
+      lastName: "Fisher",
       principle: 2000,
       dueDate: "2022-12-20",
     },
     {
       firstname: "Bob",
-      lastname: "Fisher",
+      lastName: "Fisher",
       principle: 200,
       dueDate: "2023-01-20",
     },
@@ -25,7 +25,7 @@ const updateDB = (async function () {
     },
     {
       firstname: "Dan",
-      lastname: "Johnson",
+      lastName: "Johnson",
       principle: 600,
       dueDate: "2022-11-20",
       createdDate: new Date("2022-10-20"),
@@ -33,9 +33,9 @@ const updateDB = (async function () {
   ];
 
   users.forEach(async (item) => {
-    const { firstname, lastname } = item;
+    const { firstname, lastName } = item;
     const { principle, dueDate } = item;
-    const user = await createUserService({ firstname, lastname });
+    const user = await createUserService({ firstname, lastName });
     const loan = await createLoanService(
       { user: user._id, principle, dueDate },
       item.createdDate

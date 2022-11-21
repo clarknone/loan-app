@@ -3,13 +3,15 @@ const {
   getLoanController,
   getAPILoanController,
   createLoanController,
-  createLoanAPIontroller,
+  createLoanAPIController: createLoanAPIontroller,
+  seedAPIController,
 } = require("../controller/loan");
 
 const routes = express.Router();
 
-routes.get("/loan", getLoanController);
+routes.get("/", getLoanController);
 routes.post("/loan", createLoanController);
+routes.get("/seed", seedAPIController);
 routes.get("/api/loan", getAPILoanController);
 routes.post("/api/loan", createLoanAPIontroller);
 
