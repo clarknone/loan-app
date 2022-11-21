@@ -1,0 +1,86 @@
+<html>
+
+
+<head>
+
+
+  <style>
+    table,
+    tr,
+    th,
+    td {
+
+      border: 1px solid black;
+      border-collapse: collapse;
+
+    }
+
+    tr,
+    td,
+    th {
+      padding: 5px
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <form action="/loan" name="loan" method="POST">
+
+    <label>
+      user
+    </label>
+    <select name="user">
+      <% it.user?.map((item) => { %>
+      <option value="<%= item._id %>"><%= item.firstname %></option>
+      <% }) %>
+    </select>
+    <label>
+      Principle
+    </label>
+    <input name="principle" />
+
+    <label>
+      date
+    </label>
+    <input type="date" name="dueDate" />
+    <input type="submit" name="" value="add" />
+  </form>
+
+  <table style="">
+    <tr>
+      <th> First Name </th>
+      <th> Principle Amount </th>
+      <th> Payable Amount </th>
+      <th> Daily Amount </th>
+      <th> Loan Duration </th>
+      <th> Elapsed Days </th>
+      <th> TotalPenalty Interest </th>
+      <th> TotalPenalty Amount + 15 Days Panalty  </th>
+      <th> Daily Penalty Amount </th>
+    </tr>
+    <tbody bordered>
+
+      <% it.data.forEach(item=>{
+      %>
+      <tr>
+        <td> <%= item.user.firstname %> </td>
+        <td> $<%= item.principle %> </td>
+        <td> $<%= item.amount.toFixed(2) %></td>
+        <td> $<%= (item.amount/item.duration).toFixed(2) %></td>
+        <td> <%= item.duration %></td>
+        <td> <%= item.dayDifference > 0 ?item.dayDifference:0 %></td>
+        <td> $<%= item.dayDifference > 0 ?item.interest.toFixed(2):0 %></td>
+        <td> $<%= item.dayDifference > 0 ?item.totalPenalty.toFixed(2):0 %></td>
+        <td> $<%= item.dayDifference > 0 ?(item.totalPenalty/item.dayDifference).toFixed(2):0 %></td>
+      </tr>
+
+      <%
+      })%>
+
+    </tbody>
+  </table>
+</body>
+
+</html>
